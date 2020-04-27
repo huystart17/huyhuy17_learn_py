@@ -6,7 +6,7 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
         self.write("<br>wtf")
-        self.write("<h1>wtf</h1>")
+        self.write("<h1>wtf1</h1>")
 
 
 def make_app():
