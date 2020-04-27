@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   huyhuy17_nuxt:
     build:
@@ -16,28 +15,27 @@ services:
       - MONGO_PORT=$MONGO_PORT
       - MONGO_DB=$MONGO_DB
     ports:
-      - "3000:3000"
+      - '8888:8888'
     volumes:
-      - .:/usr/src/app
-    networks:
-      - app-network
-    command: yarn dev
-
-  db:
-    image: mongo:4.1.8-xenial
-    container_name: db
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-    volumes:
-      - dbdata:/data/db
+      - '.:/usr/src/app'
+    command: python ./main.py
     networks:
       - app-network
 
+#  db:
+#    image: 'mongo:4.1.8-xenial'
+#    container_name: db
+#    restart: unless-stopped
+#    env_file: .env
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+#      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+#    volumes:
+#      - 'dbdata:/data/db'
+#    networks:
+#      - app-network
 networks:
   app-network:
     driver: bridge
 volumes:
-  dbdata:
+  dbdata: null
